@@ -12,7 +12,7 @@ export function Hero() {
         and let them vote. Simple, fast, no sign-up required.
       </p>
       <Link href="/create">
-        <Button className="cursor-pointer">Create an event</Button>
+        <Button className="cursor-pointer  ">Create an event</Button>
       </Link>
     </section>
   );
