@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { BackgroundBeams } from "./ui/background-beams";
+import { BackgroundBeams } from "@/components/ui/background-beams";
 
 export function Hero() {
   return (
