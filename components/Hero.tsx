@@ -14,7 +14,7 @@ export function Hero() {
       </p>
 
       <div className="flex flex-col sm:flex-row gap-3 z-10">
-        <Link href="/create">
+        <Link href="/create-account">
           <Button size="lg" className="cursor-pointer">
             Create an event
           </Button>
