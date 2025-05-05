@@ -1,19 +1,32 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { BackgroundBeams } from "./ui/background-beams";
 
 export function Hero() {
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center px-4 text-center">
-      <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+    <section className="relative min-h-screen flex flex-col items-center justify-center px-4 text-center">
+      <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 z-10">
         Plan your hangouts effortlessly
       </h1>
-      <p className="text-muted-foreground max-w-md mb-6">
-        Suggest multiple options (cinema, paintball, etc.), invite your friends,
-        and let them vote. Simple, fast, no sign-up required.
+      <p className="text-muted-foreground max-w-md mb-6 z-10">
+        Suggest multiple options, invite your friends, and let them vote.
+        Simple, fast, no sign-up required.
       </p>
-      <Link href="/create">
-        <Button className="cursor-pointer  ">Create an event</Button>
-      </Link>
+
+      <div className="flex flex-col sm:flex-row gap-3 z-10">
+        <Link href="/create">
+          <Button size="lg" className="cursor-pointer">
+            Create an event
+          </Button>
+        </Link>
+        <Link href="#how-it-works">
+          <Button variant="outline" size="lg" className="cursor-pointer">
+            How it works
+          </Button>
+        </Link>
+      </div>
+
+      <BackgroundBeams />
     </section>
   );
 }
