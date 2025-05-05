@@ -10,7 +10,7 @@ export function LoginModal() {
       <div className="space-y-3">
         <Button
           variant="outline"
-          className="w-full flex items-center gap-2 justify-center"
+          className="w-full cursor-pointer flex items-center gap-2 justify-center"
         >
           <FcGoogle className="text-xl" />
           Continue with Google
@@ -18,7 +18,7 @@ export function LoginModal() {
 
         <Button
           variant="outline"
-          className="w-full flex items-center gap-2 justify-center"
+          className="w-full cursor-pointer flex items-center gap-2 justify-center"
         >
           <FaGithub className="text-xl" />
           Continue with GitHub
@@ -26,13 +26,13 @@ export function LoginModal() {
 
         <Button
           variant="outline"
-          className="w-full flex items-center gap-2 justify-center"
+          className="w-full cursor-pointer flex items-center gap-2 justify-center"
         >
           <FaApple className="text-xl" />
           Continue with Apple
         </Button>
 
-        <Button className="w-full">Continue with email</Button>
+        <Button className="w-full cursor-pointer">Continue with email</Button>
       </div>
     </div>
   );
