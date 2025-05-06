@@ -1,6 +1,7 @@
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { MockupPreview } from "@/components/MockupPreview";
+import { FeaturesSection } from "@/components/Features";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <Header />
       <Hero />
       <MockupPreview />
+      <FeaturesSection />
     </div>
   );
 }
