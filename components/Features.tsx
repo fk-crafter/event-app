@@ -11,6 +11,7 @@ import {
   DollarSign,
   CircleCheck,
 } from "lucide-react";
+import { motion } from "motion/react";
 
 const features = [
   {
@@ -51,27 +52,32 @@ export function FeaturesSection() {
 
   return (
     <section className="w-full py-20 px-4 flex flex-col items-center bg-background">
-      <h2 className="text-3xl font-bold text-center mb-10">Why use Togeda?</h2>
-
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl w-full">
         {features.map((feature, index) => (
-          <Card
+          <motion.div
             key={index}
-            className="p-0 w-full shadow-none border-none max-w-md mx-auto"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
-            <MagicCard
-              gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"}
-              className="p-0"
-            >
-              <CardHeader className="p-6 pb-2 flex flex-col items-start gap-3">
-                <div className="rounded-full bg-muted p-2">{feature.icon}</div>
-                <CardTitle className="text-lg">{feature.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="p-6 pt-2 text-muted-foreground text-sm">
-                {feature.description}
-              </CardContent>
-            </MagicCard>
-          </Card>
+            <Card className="p-0 w-full shadow-none border-none max-w-md mx-auto">
+              <MagicCard
+                gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"}
+                className="p-0"
+              >
+                <CardHeader className="p-6 pb-2 flex flex-col items-start gap-3">
+                  <div className="rounded-full bg-muted p-2">
+                    {feature.icon}
+                  </div>
+                  <CardTitle className="text-lg">{feature.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="p-6 pt-2 text-muted-foreground text-sm">
+                  {feature.description}
+                </CardContent>
+              </MagicCard>
+            </Card>
+          </motion.div>
         ))}
       </div>
     </section>

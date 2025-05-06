@@ -12,7 +12,7 @@ export default function Home() {
       <Hero />
       <MockupPreview />
       <CardTransition />
-      {/* <FeaturesSection /> */}
+      <FeaturesSection />
       {/* <PlanningSection /> */}
       <div className="h-[150vh]" />
     </div>

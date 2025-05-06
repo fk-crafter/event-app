@@ -71,6 +71,10 @@ export function CardTransition() {
       <div className="absolute top-[1080px] w-full flex justify-center z-20">
         <Box />
       </div>
+
+      <div className="absolute top-[1700px] w-full flex justify-center z-50">
+        <div className="h-[130px] w-[2px] bg-black" />
+      </div>
     </section>
   );
 }
