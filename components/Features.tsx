@@ -51,7 +51,7 @@ export function FeaturesSection() {
   const { theme } = useTheme();
 
   return (
-    <section className="w-full py-20 px-4 flex flex-col items-center bg-background">
+    <section className="w-full py-10 px-4 flex flex-col items-center bg-background">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl w-full">
         {features.map((feature, index) => (
           <motion.div

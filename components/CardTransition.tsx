@@ -35,15 +35,14 @@ export function CardTransition() {
     if (withCardRef.current) {
       gsap.fromTo(
         withCardRef.current,
-        { y: 40, opacity: 0 },
+        { y: 40 },
         {
           y: 330,
-          opacity: 1,
           ease: "none",
           scrollTrigger: {
             trigger: "#section-wrapper",
-            start: "top+=1000 top",
-            end: "top+=1300 top",
+            start: "top+=900 top",
+            end: "top+=1200 top",
             scrub: true,
           },
         }

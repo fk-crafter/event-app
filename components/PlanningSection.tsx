@@ -12,7 +12,6 @@ export function PlanningSection() {
         </p>
       </div>
 
-      {/* Mockup placeholder */}
       <div className="w-full max-w-5xl px-4">
         <div className="aspect-video w-full rounded-xl border border-border bg-background flex items-center justify-center text-muted-foreground text-sm">
           [ Before/After planning flow preview coming soon ]
