@@ -5,7 +5,6 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import { motion, AnimatePresence } from "motion/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -40,69 +39,92 @@ export function HowItWorksSection() {
       end: () => `+=${steps.length * 100}vh`,
       pin: true,
       scrub: true,
-      snap: {
-        snapTo: 1 / (steps.length - 1),
-        duration: 0.3,
-        ease: "power1.inOut",
-      },
       onUpdate: (self) => {
         const progress = self.progress;
         const newIndex = Math.round(progress * (steps.length - 1));
         setActiveStep(newIndex);
       },
     });
+
+    // Animate vertical progress line
+    gsap.to(".progress-line", {
+      height: "100%",
+      ease: "none",
+      scrollTrigger: {
+        trigger: section,
+        start: "top top",
+        end: () => `+=${steps.length * 100}vh`,
+        scrub: true,
+      },
+    });
+
+    // Animate circles
+    gsap.utils.toArray<HTMLDivElement>(".step-circle").forEach((circle, i) => {
+      gsap.fromTo(
+        circle,
+        { scale: 1, backgroundColor: "#e4e4e7", color: "#a1a1aa" }, // muted
+        {
+          scale: 1.2,
+          backgroundColor: "#6366f1", // primary
+          color: "#ffffff",
+          scrollTrigger: {
+            trigger: section,
+            start: `${i * 100}vh top`,
+            end: `${(i + 1) * 100}vh top`,
+            scrub: true,
+          },
+        }
+      );
+    });
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative bg-background h-[300vh]">
+    <section
+      ref={sectionRef}
+      className="relative bg-background h-[300vh] overflow-hidden"
+    >
       <div className="h-screen flex max-w-6xl mx-auto px-6 items-center justify-between gap-12">
+        {/* Left timeline */}
         <div className="w-1/3 relative flex flex-col gap-12">
-          <div className="absolute left-[11px] top-0 h-full w-[2px] bg-border" />
+          {/* Vertical progress line */}
+          <div className="absolute left-[11px] top-0 h-full w-[2px] bg-border">
+            <div className="progress-line w-full bg-primary h-0 origin-top" />
+          </div>
 
           {steps.map((step, index) => (
             <div key={index} className="pl-8 relative">
               <div
-                className={`absolute left-[-2px] top-1 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
-                  index === activeStep
-                    ? "bg-primary text-white"
-                    : "bg-muted text-muted-foreground"
-                }`}
+                className={`step-circle absolute left-[-2px] top-1 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold`}
               >
                 {index + 1}
               </div>
               <h3
-                className={`text-lg font-semibold mb-1 ${
-                  index === activeStep ? "text-foreground" : "text-muted"
+                className={`text-lg font-semibold mb-1 transition-opacity duration-300 ${
+                  index === activeStep ? "opacity-100" : "opacity-40"
                 }`}
               >
                 {step.title}
               </h3>
-              <p className="text-muted-foreground text-sm">
+              <p
+                className={`text-sm transition-opacity duration-300 text-muted-foreground ${
+                  index === activeStep ? "opacity-100" : "opacity-50"
+                }`}
+              >
                 {step.description}
               </p>
             </div>
           ))}
         </div>
 
-        <div className="w-2/3 h-[400px] bg-muted rounded-xl flex items-center justify-center p-6 relative overflow-hidden">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeStep}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.4 }}
-              className="absolute"
-            >
-              <Image
-                src={steps[activeStep].image}
-                alt="Step"
-                width={500}
-                height={300}
-                className="rounded-lg object-cover"
-              />
-            </motion.div>
-          </AnimatePresence>
+        {/* Right dynamic image */}
+        <div className="w-2/3 h-[400px] bg-muted rounded-xl flex items-center justify-center p-6">
+          <Image
+            src={steps[activeStep].image}
+            alt="Step"
+            width={500}
+            height={300}
+            className="rounded-lg object-cover"
+          />
         </div>
       </div>
     </section>
