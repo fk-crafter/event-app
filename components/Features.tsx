@@ -61,10 +61,10 @@ export function FeaturesSection() {
             transition={{ duration: 0.5, delay: index * 0.1 }}
             viewport={{ once: true, amount: 0.2 }}
           >
-            <Card className="p-0 w-full shadow-none border-none max-w-md mx-auto">
+            <Card className="p-0 w-full shadow-none border-none max-w-md mx-auto min-h-[200px]">
               <MagicCard
                 gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"}
-                className="p-0"
+                className="p-0 min-h-[200px]"
               >
                 <CardHeader className="p-6 pb-2 flex flex-col items-start gap-3">
                   <div className="rounded-full bg-muted p-2">
