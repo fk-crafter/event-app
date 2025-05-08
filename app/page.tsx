@@ -4,6 +4,7 @@ import { MockupPreview } from "@/components/MockupPreview";
 import { FeaturesSection } from "@/components/Features";
 import { PlanningSection } from "@/components/PlanningSection";
 import { CardTransition } from "@/components/CardTransition";
+import { HowItWorksSection } from "@/components/HowItWorksSection";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <CardTransition />
       <FeaturesSection />
       {/* <PlanningSection /> */}
+      <HowItWorksSection />
       <div className="h-[150vh]" />
     </div>
   );
