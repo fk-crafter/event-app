@@ -46,7 +46,6 @@ export function HowItWorksSection() {
       },
     });
 
-    // Animate vertical progress line
     gsap.to(".progress-line", {
       height: "100%",
       ease: "none",
@@ -57,25 +56,6 @@ export function HowItWorksSection() {
         scrub: true,
       },
     });
-
-    // Animate circles
-    gsap.utils.toArray<HTMLDivElement>(".step-circle").forEach((circle, i) => {
-      gsap.fromTo(
-        circle,
-        { scale: 1, backgroundColor: "#e4e4e7", color: "#a1a1aa" }, // muted
-        {
-          scale: 1.2,
-          backgroundColor: "#6366f1", // primary
-          color: "#ffffff",
-          scrollTrigger: {
-            trigger: section,
-            start: `${i * 100}vh top`,
-            end: `${(i + 1) * 100}vh top`,
-            scrub: true,
-          },
-        }
-      );
-    });
   }, []);
 
   return (
@@ -84,9 +64,7 @@ export function HowItWorksSection() {
       className="relative bg-background h-[300vh] overflow-hidden"
     >
       <div className="h-screen flex max-w-6xl mx-auto px-6 items-center justify-between gap-12">
-        {/* Left timeline */}
         <div className="w-1/3 relative flex flex-col gap-12">
-          {/* Vertical progress line */}
           <div className="absolute left-[11px] top-0 h-full w-[2px] bg-border">
             <div className="progress-line w-full bg-primary h-0 origin-top" />
           </div>
@@ -94,7 +72,11 @@ export function HowItWorksSection() {
           {steps.map((step, index) => (
             <div key={index} className="pl-8 relative">
               <div
-                className={`step-circle absolute left-[-2px] top-1 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold`}
+                className={`step-circle absolute left-[-2px] top-1 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 ${
+                  index === activeStep
+                    ? "bg-primary text-white scale-110"
+                    : "bg-muted text-muted-foreground"
+                }`}
               >
                 {index + 1}
               </div>
@@ -116,7 +98,6 @@ export function HowItWorksSection() {
           ))}
         </div>
 
-        {/* Right dynamic image */}
         <div className="w-2/3 h-[400px] bg-muted rounded-xl flex items-center justify-center p-6">
           <Image
             src={steps[activeStep].image}
