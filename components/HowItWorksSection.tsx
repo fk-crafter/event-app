@@ -16,7 +16,7 @@ const steps = [
   },
   {
     title: "Share the link",
-    description: "Send it to your friends — no sign-up needed.",
+    description: "Send it to your friend — no sign-up needed.",
     image: "/step2.png",
   },
   {
