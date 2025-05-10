@@ -1,7 +1,17 @@
+"use client";
+
+import { motion } from "motion/react";
+
 export function BoldStatementSection() {
   return (
-    <section className="w-fulls py-32 px-4 text-center text-black">
-      <div className="max-w-3xl mx-auto">
+    <section className="w-full py-32 px-4 text-center text-black">
+      <motion.div
+        className="max-w-3xl mx-auto"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        viewport={{ once: true, amount: 1 }}
+      >
         <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
           Your group plans fall apart <br className="hidden md:inline" /> like
           90% of the time
@@ -13,7 +23,7 @@ export function BoldStatementSection() {
           Togeda helps you actually make decisions — fast, simple, no sign-up
           needed.
         </p>
-      </div>
+      </motion.div>
     </section>
   );
 }
