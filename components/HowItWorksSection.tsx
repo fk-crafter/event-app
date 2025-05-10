@@ -61,7 +61,7 @@ export function HowItWorksSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-background h-[300vh] overflow-hidden"
+      className="relative bg-background overflow-hidden"
     >
       <div className="h-screen flex max-w-6xl mx-auto px-6 items-center justify-between gap-12">
         <div className="w-1/3 relative flex flex-col gap-12">

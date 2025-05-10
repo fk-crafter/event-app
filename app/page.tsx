@@ -1,10 +1,11 @@
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { MockupPreview } from "@/components/MockupPreview";
+import { CardTransition } from "@/components/CardTransition";
 import { FeaturesSection } from "@/components/Features";
 import { PlanningSection } from "@/components/PlanningSection";
-import { CardTransition } from "@/components/CardTransition";
 import { HowItWorksSection } from "@/components/HowItWorksSection";
+import { BuiltForSection } from "@/components/BuiltForSection";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <FeaturesSection />
       {/* <PlanningSection /> */}
       <HowItWorksSection />
+      <BuiltForSection />
       <div className="h-[150vh]" />
     </div>
   );
