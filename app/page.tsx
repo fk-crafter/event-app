@@ -7,6 +7,7 @@ import { FeaturesSection } from "@/components/Features";
 import { PlanningSection } from "@/components/PlanningSection";
 import { HowItWorksSection } from "@/components/HowItWorksSection";
 import { BuiltForSection } from "@/components/BuiltForSection";
+import { CollaborativeSection } from "@/components/CollaborativeSection";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       {/* <PlanningSection /> */}
       <HowItWorksSection />
       <BuiltForSection />
+      <CollaborativeSection />
       <div className="h-[150vh]" />
     </div>
   );
