@@ -8,6 +8,7 @@ import { PlanningSection } from "@/components/PlanningSection";
 import { HowItWorksSection } from "@/components/HowItWorksSection";
 import { BuiltForSection } from "@/components/BuiltForSection";
 import { CollaborativeSection } from "@/components/CollaborativeSection";
+import { ShareAnywhereSection } from "@/components/ShareAnywhereSection";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <HowItWorksSection />
       <BuiltForSection />
       <CollaborativeSection />
+      <ShareAnywhereSection />
       <div className="h-[150vh]" />
     </div>
   );

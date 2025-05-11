@@ -10,7 +10,7 @@ export function Hero() {
       </h1>
       <p className="text-muted-foreground max-w-md mb-6 z-10">
         Suggest multiple options, invite your friends, and let them vote.
-        Simple, fast, no sign-up required.
+        Simple, fast, no sign-up required.(Only for the owner)
       </p>
 
       <div className="flex flex-col sm:flex-row gap-3 z-10">
