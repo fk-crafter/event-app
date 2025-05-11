@@ -9,7 +9,7 @@ import { HowItWorksSection } from "@/components/HowItWorksSection";
 import { BuiltForSection } from "@/components/BuiltForSection";
 import { CollaborativeSection } from "@/components/CollaborativeSection";
 import { ShareAnywhereSection } from "@/components/ShareAnywhereSection";
-
+import { PricingSection } from "@/components/PricingSection";
 export default function Home() {
   return (
     <div className="relative ">
@@ -24,6 +24,7 @@ export default function Home() {
       <BuiltForSection />
       <CollaborativeSection />
       <ShareAnywhereSection />
+      <PricingSection />
       <div className="h-[150vh]" />
     </div>
   );
