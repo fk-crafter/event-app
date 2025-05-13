@@ -99,13 +99,9 @@ export function HowItWorksSection() {
         </div>
 
         <div className="w-2/3 h-[400px] bg-muted rounded-xl flex items-center justify-center p-6">
-          <Image
-            src={steps[activeStep].image}
-            alt="Step"
-            width={500}
-            height={300}
-            className="rounded-lg object-cover"
-          />
+          <div className="aspect-video w-full max-w-xl rounded-xl border border-border bg-muted flex items-center justify-center text-muted-foreground text-sm">
+            [Step {activeStep + 1} preview]
+          </div>
         </div>
       </div>
     </section>

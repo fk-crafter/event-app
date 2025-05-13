@@ -6,7 +6,7 @@ export function CollaborativeSection() {
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         <div className="flex flex-col items-center">
           <div className="w-full h-64 rounded-xl bg-muted flex items-center justify-center text-muted-foreground">
-            [Conversation preview – coming soon]
+            [Conversation preview]
           </div>
           <h3 className="text-xl font-semibold text-foreground mt-6 mb-2">
             No more endless group chats
@@ -19,7 +19,7 @@ export function CollaborativeSection() {
 
         <div className="flex flex-col items-center">
           <div className="w-full h-64 rounded-xl bg-muted flex items-center justify-center text-muted-foreground">
-            [Feature illustration – coming soon]
+            [Feature illustration]
           </div>
           <h3 className="text-xl font-semibold text-foreground mt-6 mb-2">
             Make decisions, not threads
