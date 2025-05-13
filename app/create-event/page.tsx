@@ -25,7 +25,7 @@ export default function CreateEventPage() {
 
   return (
     <main className="max-w-2xl mx-auto px-4 py-16">
-      <h1 className="text-2xl font-bold mb-6">Create a new event</h1>
+      <h1 className="text-2xl font-bold mb-6">Create a new evnt</h1>
 
       <div className="mb-6">
         <Label className="mb-2 block">Event name</Label>
