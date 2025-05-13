@@ -11,6 +11,8 @@ import { CollaborativeSection } from "@/components/CollaborativeSection";
 import { ShareAnywhereSection } from "@/components/ShareAnywhereSection";
 import { PricingSection } from "@/components/PricingSection";
 import { FAQSection } from "@/components/FAQSection";
+import { CTASection } from "@/components/CTASection";
+
 export default function Home() {
   return (
     <div className="relative ">
@@ -27,6 +29,7 @@ export default function Home() {
       <ShareAnywhereSection />
       <PricingSection />
       <FAQSection />
+      <CTASection />
       <div className="h-[150vh]" />
     </div>
   );

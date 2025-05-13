@@ -42,8 +42,50 @@ export function FAQSection() {
           <AccordionItem value="item-3">
             <AccordionTrigger>Can I track who voted?</AccordionTrigger>
             <AccordionContent>
-              Yes! Togeda gives you a full response list so you know who’s in
-              and who’s out — no guessing.
+              Yes! You’ll see who voted, declined, or didn’t respond — no
+              guesswork.
+            </AccordionContent>
+          </AccordionItem>
+
+          <AccordionItem value="item-4">
+            <AccordionTrigger>How do I create an event?</AccordionTrigger>
+            <AccordionContent>
+              Just pick a few activity options, set a deadline, and share the
+              link — it takes less than a minute.
+            </AccordionContent>
+          </AccordionItem>
+
+          <AccordionItem value="item-5">
+            <AccordionTrigger>Is it really free?</AccordionTrigger>
+            <AccordionContent>
+              Yes, Togeda has a free plan with all the basics. Advanced features
+              will be part of upcoming paid plans.
+            </AccordionContent>
+          </AccordionItem>
+
+          <AccordionItem value="item-6">
+            <AccordionTrigger>
+              What happens after everyone votes?
+            </AccordionTrigger>
+            <AccordionContent>
+              Togeda picks the best option automatically based on votes. No
+              debate needed.
+            </AccordionContent>
+          </AccordionItem>
+
+          <AccordionItem value="item-7">
+            <AccordionTrigger>Can I add a cost per option?</AccordionTrigger>
+            <AccordionContent>
+              Yes, you can add pricing info so friends can compare and decide
+              based on budget.
+            </AccordionContent>
+          </AccordionItem>
+
+          <AccordionItem value="item-8">
+            <AccordionTrigger>Does it work on mobile?</AccordionTrigger>
+            <AccordionContent>
+              Absolutely — Togeda works seamlessly on phones, tablets, and
+              desktop.
             </AccordionContent>
           </AccordionItem>
         </Accordion>
