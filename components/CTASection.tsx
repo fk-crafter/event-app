@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Mail } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
 export function CTASection() {
   return (
@@ -9,19 +9,24 @@ export function CTASection() {
       <div className="absolute inset-0 z-0 opacity-30 blur-xl pointer-events-none bg-[url('/icons-pattern.svg')] bg-center bg-cover" />
 
       <div className="relative z-10 max-w-xl w-full bg-background/70 backdrop-blur-md border border-border rounded-2xl p-10 text-center shadow-xl">
-        <div className="flex items-center justify-center mb-6">
-          <Mail className="w-10 h-10 text-primary" />
-        </div>
         <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
           Join the Togeda beta
         </h2>
         <p className="text-muted-foreground mb-6">
-          Be among the first to experience stress-free group planning. Reserve
-          your spot in the private beta today.
+          Get early access when we launch. Drop your email — we’ll reach out.
         </p>
-        <Button className="text-base cursor-pointer px-6 py-4">
-          Request beta access
-        </Button>
+
+        <form className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+          <Input
+            type="email"
+            placeholder="Enter your email"
+            className="w-full sm:w-auto"
+            required
+          />
+          <Button type="submit" className="w-full sm:w-auto">
+            Request Access
+          </Button>
+        </form>
       </div>
     </section>
   );
