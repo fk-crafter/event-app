@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 export default function CreateEventPage() {
   const [eventName, setEventName] = useState("");
   const [options, setOptions] = useState([{ name: "", price: "" }]);
+  const [guests, setGuests] = useState([""]);
 
   const handleOptionChange = (index: number, field: string, value: string) => {
     const updated = [...options];
@@ -15,13 +16,33 @@ export default function CreateEventPage() {
     setOptions(updated);
   };
 
+  const handleGuestChange = (index: number, value: string) => {
+    const updated = [...guests];
+    updated[index] = value;
+    setGuests(updated);
+  };
+
   const addOption = () => {
     setOptions([...options, { name: "", price: "" }]);
   };
 
+  const addGuest = () => {
+    setGuests([...guests, ""]);
+  };
+
   const handleSubmit = () => {
-    console.log({ eventName, options });
-    // Next: Save to DB or redirect
+    const cleanGuests = guests.filter((g) => g.trim() !== "");
+    const cleanOptions = options.filter((opt) => opt.name.trim() !== "");
+
+    const eventPayload = {
+      eventName,
+      options: cleanOptions,
+      guests: cleanGuests,
+    };
+
+    console.log("\u{1F680} Event created:", eventPayload);
+
+    // TODO: Save to backend, then redirect to /share
   };
 
   return (
@@ -56,6 +77,21 @@ export default function CreateEventPage() {
         ))}
         <Button type="button" variant="outline" onClick={addOption}>
           + Add option
+        </Button>
+      </div>
+
+      <div className="mb-6 space-y-4">
+        <Label className="block mb-2">Guests</Label>
+        {guests.map((guest, i) => (
+          <Input
+            key={i}
+            placeholder="Enter guest nickname"
+            value={guest}
+            onChange={(e) => handleGuestChange(i, e.target.value)}
+          />
+        ))}
+        <Button type="button" variant="outline" onClick={addGuest}>
+          + Add guest
         </Button>
       </div>
 

@@ -9,7 +9,7 @@ export function CTASection() {
       id="beta"
       className="relative w-full py-32 px-4 flex items-center justify-center bg-background overflow-hidden"
     >
-      <div className="absolute inset-0 z-0 opacity-30 blur-xl pointer-events-none bg-[url('/icons-pattern.svg')] bg-center bg-cover" />
+      <div className="absolute inset-0 z-0 opacity-30 blur-xl pointer-events-none" />
 
       <div className="relative z-10 max-w-xl w-full bg-background/70 backdrop-blur-md border border-border rounded-2xl p-10 text-center shadow-xl">
         <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
