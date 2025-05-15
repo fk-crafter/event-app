@@ -34,16 +34,12 @@ export default function CreateEventPage() {
   const router = useRouter();
 
   const handleSubmit = () => {
-    const cleanGuests = guests.filter((g) => g.trim() !== "");
-    const cleanOptions = options.filter((opt) => opt.name.trim() !== "");
-
-    const eventPayload = {
+    const event = {
       eventName,
-      options: cleanOptions,
-      guests: cleanGuests,
+      options,
+      guests,
     };
-
-    const encoded = encodeURIComponent(JSON.stringify(eventPayload));
+    const encoded = encodeURIComponent(JSON.stringify(event));
     router.push(`/share?data=${encoded}`);
   };
 

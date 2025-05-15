@@ -44,7 +44,9 @@ export default function ShareEventPage() {
           {event.guests.map((guest: string, i: number) => (
             <li key={i}>
               <code className="text-sm bg-muted px-2 py-1 rounded">
-                /vote?event=123&user={guest}
+                {`/vote?data=${encodeURIComponent(
+                  JSON.stringify({ ...event, guest })
+                )}`}
               </code>
             </li>
           ))}
