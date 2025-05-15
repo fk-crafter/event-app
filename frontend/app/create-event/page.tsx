@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -30,6 +31,8 @@ export default function CreateEventPage() {
     setGuests([...guests, ""]);
   };
 
+  const router = useRouter();
+
   const handleSubmit = () => {
     const cleanGuests = guests.filter((g) => g.trim() !== "");
     const cleanOptions = options.filter((opt) => opt.name.trim() !== "");
@@ -40,9 +43,8 @@ export default function CreateEventPage() {
       guests: cleanGuests,
     };
 
-    console.log("\u{1F680} Event created:", eventPayload);
-
-    // TODO: Save to backend, then redirect to /share
+    const encoded = encodeURIComponent(JSON.stringify(eventPayload));
+    router.push(`/share?data=${encoded}`);
   };
 
   return (
