@@ -25,13 +25,18 @@ export default function VotePage() {
     }
   }, [params, user]);
 
-  const handleVote = () => {
-    if (!selectedOption || !event || !user) return;
+  const updateVote = (vote: string | null) => {
+    if (!event || !user) return;
 
     const updatedVotes = {
       ...(event.votes || {}),
-      [user]: selectedOption,
     };
+
+    if (vote === null) {
+      delete updatedVotes[user];
+    } else {
+      updatedVotes[user] = vote;
+    }
 
     const updatedEvent = {
       ...event,
@@ -42,11 +47,26 @@ export default function VotePage() {
     router.replace(`/vote?data=${encoded}&guest=${user}`);
   };
 
+  const handleVote = () => {
+    if (!selectedOption) return;
+    updateVote(selectedOption);
+  };
+
+  const handleUnavailable = () => {
+    updateVote("Not available");
+  };
+
+  const handleCancelVote = () => {
+    updateVote(null);
+    setSelectedOption(null);
+  };
+
   if (!event) {
     return <p className="text-center mt-20">Loading event data...</p>;
   }
 
-  const alreadyVoted = event.votes && event.votes[user as string];
+  const currentVote = event.votes?.[user as string];
+  const hasVoted = currentVote !== undefined;
 
   return (
     <main className="max-w-5xl mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -74,33 +94,54 @@ export default function VotePage() {
           ))}
         </div>
 
-        <Button
-          className="mt-4"
-          onClick={handleVote}
-          disabled={!selectedOption || alreadyVoted}
-        >
-          {alreadyVoted ? "Vote submitted" : "Submit vote"}
-        </Button>
+        <div className="flex flex-col sm:flex-row gap-3 mt-4">
+          <Button onClick={handleVote} disabled={!selectedOption || hasVoted}>
+            {hasVoted ? "Vote submitted" : "Submit vote"}
+          </Button>
+
+          <Button
+            variant="outline"
+            onClick={handleUnavailable}
+            disabled={hasVoted}
+          >
+            I’m not available
+          </Button>
+
+          {hasVoted && (
+            <Button variant="ghost" onClick={handleCancelVote}>
+              Cancel vote
+            </Button>
+          )}
+        </div>
       </div>
 
       <div>
         <h2 className="text-lg font-semibold mb-4">Who's voted?</h2>
         <ul className="space-y-2 text-sm">
-          {event.guests.map((g: string, i: number) => (
-            <li key={i} className="flex items-center justify-between">
-              <span>{g}</span>
-              <span
-                className={cn(
-                  "text-xs px-2 py-1 rounded-full",
-                  event.votes && event.votes[g]
-                    ? "bg-green-100 text-green-700"
-                    : "bg-gray-200 text-gray-500"
-                )}
-              >
-                {event.votes && event.votes[g] ? "Voted" : "Pending"}
-              </span>
-            </li>
-          ))}
+          {event.guests.map((g: string, i: number) => {
+            const vote = event.votes?.[g];
+            return (
+              <li key={i} className="flex items-center justify-between">
+                <span>{g}</span>
+                <span
+                  className={cn(
+                    "text-xs px-2 py-1 rounded-full",
+                    vote
+                      ? vote === "Not available"
+                        ? "bg-yellow-100 text-yellow-700"
+                        : "bg-green-100 text-green-700"
+                      : "bg-gray-200 text-gray-500"
+                  )}
+                >
+                  {vote
+                    ? vote === "Not available"
+                      ? "Unavailable"
+                      : "Voted"
+                    : "Pending"}
+                </span>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </main>
