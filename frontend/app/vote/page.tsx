@@ -87,9 +87,9 @@ export default function VotePage() {
               )}
             >
               <p className="font-medium">{opt.name}</p>
-              <p className="text-sm text-muted-foreground">
-                {opt.price ? `$${opt.price}` : "Free"}
-              </p>
+              {opt.price && (
+                <p className="text-sm text-muted-foreground">${opt.price}</p>
+              )}
             </div>
           ))}
         </div>
