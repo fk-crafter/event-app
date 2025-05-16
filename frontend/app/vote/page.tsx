@@ -1,40 +1,52 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export default function VotePage() {
   const params = useSearchParams();
+  const router = useRouter();
   const [event, setEvent] = useState<any>(null);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
-  const [votedGuests, setVotedGuests] = useState<string[]>([]);
 
-  const user = params.get("user") || "guest";
+  const user = params.get("guest");
 
   useEffect(() => {
     const raw = params.get("data");
-    if (!raw) return;
+    if (!raw || !user) return;
 
     try {
       const decoded = JSON.parse(decodeURIComponent(raw));
       setEvent(decoded);
     } catch (err) {
-      console.error("Invalid data");
+      console.error("Invalid event data");
     }
-  }, [params]);
+  }, [params, user]);
 
   const handleVote = () => {
-    if (!selectedOption || !event) return;
-    if (!votedGuests.includes(user)) {
-      setVotedGuests([...votedGuests, user]);
-    }
+    if (!selectedOption || !event || !user) return;
+
+    const updatedVotes = {
+      ...(event.votes || {}),
+      [user]: selectedOption,
+    };
+
+    const updatedEvent = {
+      ...event,
+      votes: updatedVotes,
+    };
+
+    const encoded = encodeURIComponent(JSON.stringify(updatedEvent));
+    router.replace(`/vote?data=${encoded}&guest=${user}`);
   };
 
   if (!event) {
     return <p className="text-center mt-20">Loading event data...</p>;
   }
+
+  const alreadyVoted = event.votes && event.votes[user as string];
 
   return (
     <main className="max-w-5xl mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -65,9 +77,9 @@ export default function VotePage() {
         <Button
           className="mt-4"
           onClick={handleVote}
-          disabled={!selectedOption || votedGuests.includes(user)}
+          disabled={!selectedOption || alreadyVoted}
         >
-          {votedGuests.includes(user) ? "Vote submitted" : "Submit vote"}
+          {alreadyVoted ? "Vote submitted" : "Submit vote"}
         </Button>
       </div>
 
@@ -80,12 +92,12 @@ export default function VotePage() {
               <span
                 className={cn(
                   "text-xs px-2 py-1 rounded-full",
-                  votedGuests.includes(g)
+                  event.votes && event.votes[g]
                     ? "bg-green-100 text-green-700"
                     : "bg-gray-200 text-gray-500"
                 )}
               >
-                {votedGuests.includes(g) ? "Voted" : "Pending"}
+                {event.votes && event.votes[g] ? "Voted" : "Pending"}
               </span>
             </li>
           ))}

@@ -2,10 +2,13 @@
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Check, Copy } from "lucide-react";
 
 export default function ShareEventPage() {
   const params = useSearchParams();
   const [event, setEvent] = useState<any>(null);
+  const [copied, setCopied] = useState<string | null>(null);
 
   useEffect(() => {
     const raw = params.get("data");
@@ -18,6 +21,12 @@ export default function ShareEventPage() {
       console.error("Invalid data");
     }
   }, [params]);
+
+  const handleCopy = (link: string, guest: string) => {
+    navigator.clipboard.writeText(link);
+    setCopied(guest);
+    setTimeout(() => setCopied(null), 2000);
+  };
 
   if (!event) {
     return <p className="text-center mt-20">Loading event data...</p>;
@@ -40,16 +49,34 @@ export default function ShareEventPage() {
 
       <div>
         <h2 className="text-lg font-semibold mb-2">Guest links</h2>
-        <ul className="space-y-2">
-          {event.guests.map((guest: string, i: number) => (
-            <li key={i}>
-              <code className="text-sm bg-muted px-2 py-1 rounded">
-                {`/vote?data=${encodeURIComponent(
-                  JSON.stringify({ ...event, guest })
-                )}`}
-              </code>
-            </li>
-          ))}
+        <ul className="space-y-3">
+          {event.guests.map((guest: string, i: number) => {
+            const voteData = {
+              ...event,
+              guest,
+              votes: event.votes || {},
+            };
+            const url = `/vote?data=${encodeURIComponent(
+              JSON.stringify(voteData)
+            )}&guest=${guest}`;
+
+            return (
+              <li key={i} className="flex items-center gap-2">
+                <Button
+                  variant="outline"
+                  onClick={() => handleCopy(url, guest)}
+                  className="w-full justify-between"
+                >
+                  {guest}'s link
+                  {copied === guest ? (
+                    <Check className="w-4 h-4 text-green-500" />
+                  ) : (
+                    <Copy className="w-4 h-4" />
+                  )}
+                </Button>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </main>
