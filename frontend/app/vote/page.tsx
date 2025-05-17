@@ -19,6 +19,16 @@ export default function VotePage() {
 
     try {
       const decoded = JSON.parse(decodeURIComponent(raw));
+
+      const localVotes = JSON.parse(
+        localStorage.getItem("togedaVotes") || "{}"
+      );
+
+      decoded.votes = {
+        ...(decoded.votes || {}),
+        ...localVotes,
+      };
+
       setEvent(decoded);
     } catch (err) {
       console.error("Invalid event data");
@@ -36,6 +46,10 @@ export default function VotePage() {
       delete updatedVotes[user];
     } else {
       updatedVotes[user] = vote;
+    }
+
+    if (typeof window !== "undefined") {
+      localStorage.setItem("togedaVotes", JSON.stringify(updatedVotes));
     }
 
     const updatedEvent = {
