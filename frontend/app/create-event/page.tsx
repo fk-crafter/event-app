@@ -8,8 +8,11 @@ import { Label } from "@/components/ui/label";
 
 export default function CreateEventPage() {
   const [eventName, setEventName] = useState("");
-  const [options, setOptions] = useState([{ name: "", price: "" }]);
+  const [options, setOptions] = useState([
+    { name: "", price: "", datetime: "" },
+  ]);
   const [guests, setGuests] = useState([""]);
+  const router = useRouter();
 
   const handleOptionChange = (index: number, field: string, value: string) => {
     const updated = [...options];
@@ -24,14 +27,12 @@ export default function CreateEventPage() {
   };
 
   const addOption = () => {
-    setOptions([...options, { name: "", price: "" }]);
+    setOptions([...options, { name: "", price: "", datetime: "" }]);
   };
 
   const addGuest = () => {
     setGuests([...guests, ""]);
   };
-
-  const router = useRouter();
 
   const handleSubmit = () => {
     const event = {
@@ -59,7 +60,7 @@ export default function CreateEventPage() {
       <div className="mb-6 space-y-4">
         <Label className="block mb-2">Options</Label>
         {options.map((opt, i) => (
-          <div key={i} className="flex gap-2">
+          <div key={i} className="grid grid-cols-1 md:grid-cols-3 gap-2">
             <Input
               placeholder="Option name (e.g. Bowling)"
               value={opt.name}
@@ -70,6 +71,13 @@ export default function CreateEventPage() {
               type="number"
               value={opt.price}
               onChange={(e) => handleOptionChange(i, "price", e.target.value)}
+            />
+            <Input
+              type="datetime-local"
+              value={opt.datetime}
+              onChange={(e) =>
+                handleOptionChange(i, "datetime", e.target.value)
+              }
             />
           </div>
         ))}
