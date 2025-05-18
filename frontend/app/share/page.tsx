@@ -3,7 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Check, Copy } from "lucide-react";
+import { Check, Copy, Calendar, Clock, DollarSign } from "lucide-react";
 
 export default function ShareEventPage() {
   const params = useSearchParams();
@@ -38,10 +38,33 @@ export default function ShareEventPage() {
 
       <div>
         <h2 className="text-lg font-semibold mb-2">{event.eventName}</h2>
-        <ul className="text-sm text-muted-foreground">
+        <ul className="text-sm text-muted-foreground space-y-4">
           {event.options.map((opt: any, i: number) => (
             <li key={i}>
-              {opt.name} — {opt.price ? `$${opt.price}` : "Free"}
+              <div className="font-medium mb-1">{opt.name}</div>
+              <div className="text-xs flex flex-col gap-1">
+                {opt.datetime && (
+                  <span className="flex items-center gap-2">
+                    <Calendar className="w-4 h-4" />
+                    {new Date(opt.datetime).toLocaleDateString()}
+                  </span>
+                )}
+                {opt.datetime && (
+                  <span className="flex items-center gap-2">
+                    <Clock className="w-4 h-4" />
+                    {new Date(opt.datetime).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </span>
+                )}
+                {opt.price && (
+                  <span className="flex items-center gap-2">
+                    <DollarSign className="w-4 h-4" />
+                    {opt.price ? `$${opt.price}` : "Free"}
+                  </span>
+                )}
+              </div>
             </li>
           ))}
         </ul>
