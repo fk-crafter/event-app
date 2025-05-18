@@ -58,7 +58,7 @@ export default function VotePage() {
     };
 
     const encoded = encodeURIComponent(JSON.stringify(updatedEvent));
-    router.replace(`/vote?data=${encoded}&guest=${user}`);
+    router.replace(`/app/vote?data=${encoded}&guest=${user}`);
   };
 
   const handleVote = () => {

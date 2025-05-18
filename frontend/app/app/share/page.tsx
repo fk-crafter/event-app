@@ -79,7 +79,7 @@ export default function ShareEventPage() {
               guest,
               votes: event.votes || {},
             };
-            const url = `/vote?data=${encodeURIComponent(
+            const url = `/app/vote?data=${encodeURIComponent(
               JSON.stringify(voteData)
             )}&guest=${guest}`;
 

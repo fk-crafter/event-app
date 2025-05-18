@@ -41,7 +41,7 @@ export default function CreateEventPage() {
       guests,
     };
     const encoded = encodeURIComponent(JSON.stringify(event));
-    router.push(`/share?data=${encoded}`);
+    router.push(`/app/share?data=${encoded}`);
   };
 
   return (
