@@ -101,9 +101,22 @@ export default function VotePage() {
               )}
             >
               <p className="font-medium">{opt.name}</p>
-              {opt.price && (
-                <p className="text-sm text-muted-foreground">${opt.price}</p>
-              )}
+              <div className="text-sm text-muted-foreground space-y-1 mt-1">
+                {opt.datetime && (
+                  <p>
+                    <span className="inline-block w-16 font-medium">Date:</span>
+                    {new Date(opt.datetime).toLocaleString()}
+                  </p>
+                )}
+                {opt.price && (
+                  <p>
+                    <span className="inline-block w-16 font-medium">
+                      Price:
+                    </span>
+                    ${opt.price}
+                  </p>
+                )}
+              </div>
             </div>
           ))}
         </div>
