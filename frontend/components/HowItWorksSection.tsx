@@ -16,7 +16,7 @@ const steps = [
   },
   {
     title: "Share the link",
-    description: "Send it to your friends — no sign-up needed.",
+    description: "Send it to your friends.",
     image: "/step2.png",
   },
   {
@@ -61,7 +61,7 @@ export function HowItWorksSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-background h-[300vh] overflow-hidden"
+      className="relative bg-background overflow-hidden"
     >
       <div className="h-screen flex max-w-6xl mx-auto px-6 items-center justify-between gap-12">
         <div className="w-1/3 relative flex flex-col gap-12">
@@ -99,13 +99,9 @@ export function HowItWorksSection() {
         </div>
 
         <div className="w-2/3 h-[400px] bg-muted rounded-xl flex items-center justify-center p-6">
-          <Image
-            src={steps[activeStep].image}
-            alt="Step"
-            width={500}
-            height={300}
-            className="rounded-lg object-cover"
-          />
+          <div className="aspect-video w-full max-w-xl rounded-xl border border-border bg-muted flex items-center justify-center text-muted-foreground text-sm">
+            [Step {activeStep + 1} preview]
+          </div>
         </div>
       </div>
     </section>
