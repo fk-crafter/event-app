@@ -9,7 +9,7 @@ import {
 import { useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { API_URL } from "@/config";
-import { Pencil } from "lucide-react-native";
+import { Pencil, ChevronLeft } from "lucide-react-native";
 import Toast from "react-native-toast-message";
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import { useAuthStore } from "@/store/auth-store";
@@ -150,6 +150,14 @@ export default function ProfileScreen() {
       className="flex-1 bg-white px-6 py-10"
       contentContainerStyle={{ paddingBottom: 100 }}
     >
+      <TouchableOpacity
+        onPress={() => router.back()}
+        activeOpacity={0.7}
+        className="w-10 h-10 rounded-full bg-gray-100 items-center justify-center mb-4"
+      >
+        <ChevronLeft size={22} color="black" strokeWidth={2.5} />
+      </TouchableOpacity>
+
       <View className="flex flex-row items-center justify-center gap-2 mb-8">
         <Pencil size={28} color="black" strokeWidth={2.2} />
         <Text className="text-3xl font-bold text-center">Edit Profile</Text>
