@@ -8,7 +8,12 @@ import {
   Animated,
 } from "react-native";
 import { useRouter, useFocusEffect } from "expo-router";
-import { MessageCircle, ThumbsUp, Trash2 } from "lucide-react-native";
+import {
+  ChevronLeft,
+  MessageCircle,
+  ThumbsUp,
+  Trash2,
+} from "lucide-react-native";
 import { TapGestureHandler, Swipeable } from "react-native-gesture-handler";
 import { API_URL } from "@/config";
 import { useAuthStore } from "@/store/auth-store";
@@ -156,6 +161,13 @@ export default function FeedbackListScreen() {
 
   return (
     <ScrollView className="flex-1 bg-white p-6">
+      <TouchableOpacity
+        onPress={() => router.back()}
+        activeOpacity={0.7}
+        className="w-10 h-10 rounded-full bg-gray-100 items-center justify-center mb-4"
+      >
+        <ChevronLeft size={22} color="black" strokeWidth={2.5} />
+      </TouchableOpacity>
       <Text className="text-3xl font-bold text-gray-900 mb-6">
         All Feedback
       </Text>
