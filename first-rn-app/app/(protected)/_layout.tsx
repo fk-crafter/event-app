@@ -7,18 +7,21 @@ import HamburgerMenu from "@/components/HamburgerMenu";
 export default function ProtectedLayout() {
   const pathname = usePathname();
 
-  const shouldHideMenu =
-    pathname.includes("/setting/") && pathname !== "/(protected)/setting";
+  const hiddenMenuRoutes = [
+    "/setting/account",
+    "/setting/security",
+    "/share",
+    "/share-event",
+  ];
+
+  const shouldHideMenu = hiddenMenuRoutes.some((route) =>
+    pathname.startsWith(route)
+  );
 
   return (
     <View className="flex-1 bg-white">
       <HeaderApp />
-      <Stack
-        screenOptions={{
-          headerShown: false,
-          animation: "none",
-        }}
-      />
+      <Stack screenOptions={{ headerShown: false, animation: "none" }} />
       {!shouldHideMenu && <HamburgerMenu />}
     </View>
   );
