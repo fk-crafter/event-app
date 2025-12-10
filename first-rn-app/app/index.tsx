@@ -1,5 +1,4 @@
 import "../global.css";
-import { useEffect } from "react";
 import {
   View,
   Text,
@@ -13,8 +12,6 @@ import Animated, { FadeInUp, FadeInDown } from "react-native-reanimated";
 export default function Index() {
   const router = useRouter();
 
-  useEffect(() => {}, []);
-
   return (
     <View className="flex-1 bg-black">
       <ImageBackground
@@ -23,79 +20,64 @@ export default function Index() {
         imageStyle={{ resizeMode: "cover", opacity: 0.15 }}
       />
 
-      <View className="flex-1 items-center justify-between px-6 py-16 relative">
-        <Animated.View
-          entering={FadeInDown.duration(400)}
-          className="mt-10 border border-white/20 rounded-full p-3"
-        >
+      <View className="flex-1 items-center justify-between px-6 py-16">
+        <Animated.View entering={FadeInDown.duration(500)} className="mt-10">
           <Image
             source={require("../assets/images/logo.png")}
-            className="w-16 h-16 rounded-full"
+            className="w-20 h-20 rounded-full"
             resizeMode="contain"
           />
         </Animated.View>
 
         <Animated.View
-          entering={FadeInUp.delay(200).duration(500)}
+          entering={FadeInUp.delay(150).duration(500)}
           className="items-center space-y-4"
         >
-          <Text className="text-3xl font-bold text-white text-center leading-snug">
-            Plan with your {"\n"} friends, fast.
+          <Text className="text-3xl font-bold text-white text-center">
+            Welcome to Chuzly
           </Text>
-          <Text className="text-sm text-gray-400 text-center max-w-xs">
-            Skip the chaos. One link, clear options, quick decisions.
+
+          <Text className="text-sm text-gray-300 text-center max-w-xs">
+            The fastest way to plan with your friends. Built so everyone sticks
+            with it.
           </Text>
         </Animated.View>
 
         <Animated.View
-          entering={FadeInUp.delay(400).duration(500)}
-          className="w-full max-w-sm space-y-4"
+          entering={FadeInUp.delay(300).duration(500)}
+          className="w-full max-w-sm space-y-4 gap-2"
         >
-          <TouchableOpacity
-            onPress={() => router.push("/login")}
-            className="w-full py-5 mb-3 rounded-full bg-white"
-          >
-            <Text className="text-black font-semibold text-base text-center">
-              Log in
+          <TouchableOpacity className="w-full py-4 rounded-full bg-white flex-row justify-center items-center">
+            <Text className="text-black font-semibold text-base">
+               Continue with Apple
             </Text>
           </TouchableOpacity>
+
+          <TouchableOpacity className="w-full py-4 rounded-full bg-white/90 border border-white/20">
+            <Text className="text-black font-semibold text-base text-center">
+              Continue with Google
+            </Text>
+          </TouchableOpacity>
+
+          <View className="flex-row items-center justify-center my-2">
+            <View className="flex-1 h-[1px] bg-white/20" />
+            <Text className="px-3 text-gray-400 text-sm">or</Text>
+            <View className="flex-1 h-[1px] bg-white/20" />
+          </View>
 
           <TouchableOpacity
             onPress={() => router.push("/register")}
-            className="w-full py-5 rounded-full bg-[#111] border border-[#333]"
+            className="w-full py-4 rounded-full bg-white"
           >
-            <Text className="text-white font-semibold text-base text-center">
-              Create an account
+            <Text className="text-black font-semibold text-base text-center">
+              Continue with Email
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={() => router.push("/(protected)/onboarding")}
-          >
-            <Text className="text-white font-semibold text-base text-center">
-              Go to onboarding
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => router.push("./create-event")}>
-            <Text className="text-white font-semibold text-base text-center">
-              Go to event
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={() => router.push("/(protected)/overview")}
-          >
-            <Text className="text-white font-semibold text-base text-center">
-              Go to dashboard
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={() => router.push("/(protected)/create-event")}
-          >
-            <Text className="text-white font-semibold text-base text-center">
-              Go to vote
+          <TouchableOpacity onPress={() => router.push("/login")}>
+            <Text className="text-gray-300 text-center mt-2">
+              Already have an account?{" "}
+              <Text className="text-white underline">Log in</Text>
             </Text>
           </TouchableOpacity>
         </Animated.View>
