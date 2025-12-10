@@ -10,6 +10,7 @@ export default function ProtectedLayout() {
   const hiddenMenuRoutes = [
     "/setting/account",
     "/setting/choose-plan",
+    "/setting/feedback",
     "/share",
     "/share-event",
   ];
