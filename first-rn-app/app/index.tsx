@@ -67,9 +67,9 @@ export default function Index() {
 
           <TouchableOpacity
             onPress={() => router.push("/register")}
-            className="w-full py-4 rounded-full bg-white"
+            className="w-full py-4 rounded-full bg-[#717171] border border-white/20"
           >
-            <Text className="text-black font-semibold text-base text-center">
+            <Text className="text-white font-semibold text-base text-center">
               Continue with Email
             </Text>
           </TouchableOpacity>
