@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -31,6 +31,8 @@ export default function SettingsScreen() {
   } = useQuery({
     queryKey: ["profile"],
     queryFn: async () => {
+      if (loggingOut) return null;
+
       const token = useAuthStore.getState().token;
       if (!token) throw new Error("NO_TOKEN");
 
@@ -41,28 +43,33 @@ export default function SettingsScreen() {
       if (!res.ok) throw new Error("Failed to load profile");
       return res.json();
     },
-    refetchOnWindowFocus: true,
+    refetchOnWindowFocus: false,
+    retry: false,
   });
 
-  if (error?.message === "NO_TOKEN") {
-    router.replace("/(auth)/login");
-  }
+  useEffect(() => {
+    if (error?.message === "NO_TOKEN" && !loggingOut) {
+      router.replace("/");
+    }
+  }, [error, loggingOut, router]);
 
-  if (isLoading) {
+  if ((isLoading && !error) || loggingOut) {
     return (
       <View className="flex-1 justify-center items-center bg-white">
         <ActivityIndicator size="large" color="black" />
-        <Text className="text-gray-500 mt-4">Loading settings...</Text>
+        <Text className="text-gray-500 mt-4">
+          {loggingOut ? "Logging out..." : "Loading settings..."}
+        </Text>
       </View>
     );
   }
 
-  if (!profile) {
+  if (!profile && !loggingOut) {
     return (
       <View className="flex-1 justify-center items-center bg-white">
         <Text className="text-gray-600 mb-3">Failed to load profile 😕</Text>
         <TouchableOpacity
-          onPress={() => router.push("/(auth)/login")}
+          onPress={() => router.push("/")}
           className="bg-black px-6 py-3 rounded-full"
         >
           <Text className="text-white font-semibold">Go to Login</Text>
@@ -71,23 +78,27 @@ export default function SettingsScreen() {
     );
   }
 
+  const handleLogout = async () => {
+    setLoggingOut(true);
+
+    await new Promise((resolve) => setTimeout(resolve, 50));
+
+    try {
+      useAuthStore.getState().logout();
+      router.replace("/");
+    } catch (e) {
+      console.error("Logout error:", e);
+      setLoggingOut(false);
+    }
+  };
+
   const initials =
-    profile.name
+    profile?.name
       ?.split(" ")
       .map((n: string) => n[0])
       .join("")
       .slice(0, 2)
       .toUpperCase() || "?";
-
-  const handleLogout = async () => {
-    try {
-      setLoggingOut(true);
-      useAuthStore.getState().logout();
-      router.replace("/(auth)/login");
-    } finally {
-      setLoggingOut(false);
-    }
-  };
 
   return (
     <ScrollView
@@ -103,15 +114,15 @@ export default function SettingsScreen() {
         <View className="items-center">
           <View
             className={`w-24 h-24 rounded-full items-center justify-center shadow-lg border-4 border-white 
-      ${profile.avatarColor || "bg-gray-200"}`}
+      ${profile?.avatarColor || "bg-gray-200"}`}
           >
             <Text className="text-3xl font-bold text-gray-800">{initials}</Text>
           </View>
 
-          <Text className="text-xl font-semibold mt-4">{profile.name}</Text>
-          <Text className="text-gray-500">{profile.email}</Text>
+          <Text className="text-xl font-semibold mt-4">{profile?.name}</Text>
+          <Text className="text-gray-500">{profile?.email}</Text>
 
-          {profile.plan === "PRO" && (
+          {profile?.plan === "PRO" && (
             <View className="mt-3 px-5 py-1.5 bg-yellow-400/80 rounded-full shadow-sm">
               <Text className="font-semibold text-black">PRO PLAN</Text>
             </View>
