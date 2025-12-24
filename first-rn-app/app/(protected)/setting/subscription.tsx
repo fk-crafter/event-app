@@ -29,7 +29,7 @@ export default function SubscriptionScreen() {
   const fetchSubscription = useCallback(async () => {
     const token = useAuthStore.getState().token;
     if (!token) {
-      router.push("/(auth)/login");
+      router.push("/");
       return;
     }
 

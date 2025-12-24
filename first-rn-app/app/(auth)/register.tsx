@@ -104,7 +104,7 @@ export default function RegisterScreen() {
         text2: "Please verify your email before logging in.",
       });
 
-      router.replace("/(auth)/login");
+      router.replace("/");
 
       router.replace("/(protected)/overview");
     } catch (err: any) {
@@ -243,10 +243,7 @@ export default function RegisterScreen() {
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={() => router.push("/(auth)/login")}
-            className="mt-6"
-          >
+          <TouchableOpacity onPress={() => router.push("/")} className="mt-6">
             <Text className="text-center text-gray-500">
               Already have an account?{" "}
               <Text className="text-blue-600 font-semibold">Log in</Text>

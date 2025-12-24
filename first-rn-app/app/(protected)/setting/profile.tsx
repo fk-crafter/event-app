@@ -45,7 +45,7 @@ export default function ProfileScreen() {
     queryFn: async () => {
       const token = useAuthStore.getState().token;
       if (!token) {
-        router.push("/(auth)/login");
+        router.push("/");
         throw new Error("No token");
       }
 
@@ -78,7 +78,7 @@ export default function ProfileScreen() {
     mutationFn: async () => {
       const token = useAuthStore.getState().token;
       if (!token) {
-        router.push("/(auth)/login");
+        router.push("/");
         throw new Error("No token");
       }
 

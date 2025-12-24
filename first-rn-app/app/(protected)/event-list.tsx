@@ -32,7 +32,7 @@ export default function EventListScreen() {
     queryFn: async () => {
       const token = useAuthStore.getState().token;
       if (!token) {
-        router.push("/(auth)/login");
+        router.push("/");
         throw new Error("No token");
       }
 

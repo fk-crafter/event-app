@@ -19,7 +19,7 @@ export default function OverviewScreen() {
       const token = useAuthStore.getState().token;
 
       if (!token) {
-        router.push("/(auth)/login");
+        router.push("/");
         throw new Error("Missing token");
       }
 

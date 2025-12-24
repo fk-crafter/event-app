@@ -50,7 +50,7 @@ export default function VoteScreen() {
 
       const token = useAuthStore.getState().token;
       if (!token) {
-        router.push("/(auth)/login");
+        router.push("/");
         throw new Error("No token");
       }
 
@@ -89,7 +89,7 @@ export default function VoteScreen() {
     try {
       const token = useAuthStore.getState().token;
       if (!token) {
-        router.push("/(auth)/login");
+        router.push("/");
         return;
       }
 

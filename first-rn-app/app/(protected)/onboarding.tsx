@@ -121,7 +121,7 @@ export default function OnboardingScreen() {
   const handleFinish = async (redirect: "create" | "overview") => {
     setLoading(true);
     const token = useAuthStore.getState().token;
-    if (!token) return router.push("/(auth)/login");
+    if (!token) return router.push("/");
 
     try {
       await fetch(`${API_URL}/auth/update-name`, {

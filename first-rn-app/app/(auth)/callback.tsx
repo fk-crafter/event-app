@@ -40,7 +40,7 @@ export default function OAuthCallback() {
           text1: "Login error",
           text2: "Could not complete OAuth login",
         });
-        router.replace("/(auth)/login");
+        router.replace("/");
       }
     };
 

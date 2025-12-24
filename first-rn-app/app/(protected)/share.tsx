@@ -27,7 +27,7 @@ export default function ShareEventScreen() {
     queryFn: async () => {
       const token = useAuthStore.getState().token;
       if (!token) {
-        router.push("/(auth)/login");
+        router.push("/");
         throw new Error("No token");
       }
 

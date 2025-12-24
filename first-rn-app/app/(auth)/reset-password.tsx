@@ -95,7 +95,7 @@ export default function ResetPasswordScreen() {
           </Text>
 
           <TouchableOpacity
-            onPress={() => router.push("/(auth)/login")}
+            onPress={() => router.push("/")}
             className="bg-black rounded-full py-4 w-full mt-4"
           >
             <Text className="text-white text-center font-semibold">
@@ -137,10 +137,7 @@ export default function ResetPasswordScreen() {
             )}
           </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={() => router.push("/(auth)/login")}
-            className="mt-6"
-          >
+          <TouchableOpacity onPress={() => router.push("/")} className="mt-6">
             <Text className="text-center text-gray-500">
               Remember your password?{" "}
               <Text className="text-blue-600 font-semibold">Log in</Text>

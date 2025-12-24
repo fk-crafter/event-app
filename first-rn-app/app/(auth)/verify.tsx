@@ -67,7 +67,7 @@ export default function VerifyScreen() {
           </Text>
 
           <TouchableOpacity
-            onPress={() => router.push("/(auth)/login")}
+            onPress={() => router.push("/")}
             className="bg-black rounded-full py-4 px-8"
           >
             <Text className="text-white font-semibold text-base">

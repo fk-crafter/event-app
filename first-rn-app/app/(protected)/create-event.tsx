@@ -55,7 +55,7 @@ export default function CreateEventScreen() {
 
   useEffect(() => {
     if (!token) {
-      router.push("/(auth)/login");
+      router.push("/");
       return;
     }
     setCheckingAuth(false);
@@ -100,7 +100,7 @@ export default function CreateEventScreen() {
   const handleSubmit = async () => {
     const token = useAuthStore.getState().token;
     if (!token) {
-      router.push("/(auth)/login");
+      router.push("/");
       return;
     }
 

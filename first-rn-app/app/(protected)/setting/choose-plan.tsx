@@ -23,7 +23,7 @@ export default function ChoosePlanScreen() {
     const fetchProfile = async () => {
       const token = useAuthStore.getState().token;
       if (!token) {
-        router.push("/(auth)/login");
+        router.push("/");
         return;
       }
 
